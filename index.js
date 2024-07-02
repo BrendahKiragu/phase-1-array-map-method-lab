@@ -11,6 +11,18 @@ const tutorials = [
   'what is JSONP?'
 ];
 
-const titleCased = () => {
-  return tutorials
+function capitalizeString(str){
+  let capitalizeStr = ""
+  let words = str.split(" ")
+  for (let i=0; i<words.length; i++){
+  //turns all words to lowercase
+    let word =words[i].toLowerCase()
+
+    capitalizeStr += word.charAt(0).toUpperCase() + word.slice(1) + " "
+  }
+  return capitalizeStr.trim()
 }
+
+const titleCased = ()=> { return tutorials.map(capitalizeString)}
+
+console.log(titleCased())
