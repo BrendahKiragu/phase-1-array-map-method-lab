@@ -11,18 +11,18 @@ const tutorials = [
   'what is JSONP?'
 ];
 
-function capitalizeString(str){
-  let capitalizeStr = ""
-  let words = str.split(" ")
-  for (let i=0; i<words.length; i++){
-  //turns all words to lowercase
-    let word =words[i].toLowerCase()
+const specialWords = new Set(["JSONP", "NaN", "OO", "Web", "API", "stopPropagation", "preventDefault"]);
 
-    capitalizeStr += word.charAt(0).toUpperCase() + word.slice(1) + " "
-  }
-  return capitalizeStr.trim()
+function titleCased() {
+  return tutorials.map(title => {
+    return title.split(' ')
+      .map(word => {
+        const lowerWord = word.toLowerCase();
+        if (specialWords.has(lowerWord)) {
+          return lowerWord.toUpperCase(); // Preserve special words in uppercase
+        }
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      })
+      .join(' ');
+  });
 }
-
-const titleCased = ()=> { return tutorials.map(capitalizeString)}
-
-console.log(titleCased())
