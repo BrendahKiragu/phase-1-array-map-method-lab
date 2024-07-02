@@ -24,6 +24,8 @@ const titleCased = () => {
     const capitalizedWords = words.map(
       (word) => word.charAt(0).toUpperCase() + word.slice(1)
     );
+
+    //joins the words to form a new string
     const newTutorialList = capitalizedWords.join(" ");
     return newTutorialList;
   });
