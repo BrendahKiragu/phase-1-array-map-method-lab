@@ -11,18 +11,21 @@ const tutorials = [
   'what is JSONP?'
 ];
 
-const specialWords = new Set(["JSONP", "NaN", "OO", "Web", "API", "stopPropagation", "preventDefault"]);
+// list of words that should not be executed by the function
+const specialWords = ["JSONP", "NaN", "OO", "Web", "API", "stopPropagation", "preventDefault"];
 
-function titleCased() {
-  return tutorials.map(title => {
-    return title.split(' ')
-      .map(word => {
-        const lowerWord = word.toLowerCase();
-        if (specialWords.has(lowerWord)) {
-          return lowerWord.toUpperCase(); // Preserve special words in uppercase
-        }
-        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-      })
-      .join(' ');
+const titleCased = () => {
+  return tutorials.map((str) => {
+
+    //Iterates each word in each string
+    const words = str.split(" ");
+
+    //arrow function which capitalizes each word
+    const capitalizedWords = words.map(
+      (word) => word.charAt(0).toUpperCase() + word.slice(1)
+    );
+    const newTutorialList = capitalizedWords.join(" ");
+    return newTutorialList;
   });
-}
+};
+console.log(titleCased())
